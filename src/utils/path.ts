@@ -35,3 +35,11 @@ export const pathToURL = (path: string, route: string = 'viewer') => {
 
 export const preferredPath = (path: string): string =>
     config.preferHomeTilde && path.startsWith(homedir()) ? path.replace(homedir(), '~') : path;
+
+export const getParentName = (path: string) => {
+    let parentName = pbasename(pdirname(path));
+    if (!parentName) {
+        parentName = '/ (root)';
+    }
+    return parentName;
+};

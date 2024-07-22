@@ -68,9 +68,10 @@ a#parent-dir {
     background-color: #333;
     border-radius: 9999px;
     left: 2rem; top: 2rem;
-    opacity: 0;
+    opacity: 0.3;
 }
 a#parent-dir:hover { opacity: 1; }
+a#parent-dir::after { content: "↩"; }
 
 /* --------------------------------------------------------------------------
  * TABLES ------------------------------------------------------------------- */
