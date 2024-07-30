@@ -2,8 +2,14 @@ import { execSync } from 'child_process';
 import { homedir } from 'os';
 import { basename as pbasename, dirname as pdirname, parse as pparse } from 'path';
 import config from '../parser/config.js';
+import mime from 'mime';
 
-export const pmime = (path: string) => execSync(`file --mime-type -b '${path}'`).toString().trim();
+//export const pmime = (path: string) => execSync(`file --mime-type -b '${path}'`).toString().trim();
+export function pmime(path: string): string {
+    console.log(path)
+    console.log(mime.getType(path) ?? "huh?");
+    return mime.getType(path) ?? "";
+}
 
 export const pcomponents = (path: string) => {
     const parsed = pparse(path);
