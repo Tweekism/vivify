@@ -1,13 +1,17 @@
-import { execSync } from 'child_process';
 import { homedir } from 'os';
 import { basename as pbasename, dirname as pdirname, parse as pparse } from 'path';
 import config from '../parser/config.js';
-import mime from 'mime';
+import { Mime } from 'mime';
+import standardTypes from 'mime/types/standard.js';
+import otherTypes from 'mime/types/other.js';
 
-//export const pmime = (path: string) => execSync(`file --mime-type -b '${path}'`).toString().trim();
 export function pmime(path: string): string {
+    // The 'mime' package doesn't include Jupyter notebooks, add it by extension
+    // TODO: check out other mime packages to see if one does
+    const mime = new Mime(standardTypes, otherTypes);
+    mime.define({ 'application/json': ['ipynb'] })
     console.log(path)
-    console.log(mime.getType(path) ?? "huh?");
+    console.log(mime.getType(path) ?? "Unable to get mime type");
     return mime.getType(path) ?? "";
 }
 
