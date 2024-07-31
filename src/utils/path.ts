@@ -39,7 +39,8 @@ export const urlToPath = (url: string) => {
 };
 
 export const pathToURL = (path: string, route: string = 'viewer') => {
-    const withoutPrefix = path.startsWith('/') ? path.slice(1) : path;
+    const withoutPrefix = path.startsWith('/') ||
+        path.startsWith('\\') ? path.slice(1) : path; // TODO: Windows hack!
     return `/${route}/${encodeURIComponent(withoutPrefix).replaceAll('%2F', '/')}`;
 };
 
