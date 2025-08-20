@@ -21,7 +21,7 @@ https://www.markdownguide.org/extended-syntax/
 
 With syntax highlighting:
 
-```html
+```
 <html>
   <head>
   </head>
